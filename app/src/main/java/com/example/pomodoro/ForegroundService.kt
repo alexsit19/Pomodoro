@@ -75,7 +75,6 @@ class ForegroundService() : Service() {
         job = GlobalScope.launch(Dispatchers.Main) {
             while (true) {
                 var notification = currentTime.displayTime()
-                Log.d("DEBUG", "CURRENT TIME = $currentTime")
                 if (currentTime < 1000L) {
                     notification += " время вышло!"
                 }

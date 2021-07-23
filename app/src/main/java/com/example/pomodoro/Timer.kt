@@ -7,6 +7,5 @@ data class Timer (
     var currentTime: Long,
     var isStarted: Boolean,
     val totalMs: Long = currentTime,
-    var isOver: Boolean,
-    //var cdTimer: CountDownTimer?
+    var isOver: Boolean
     )
