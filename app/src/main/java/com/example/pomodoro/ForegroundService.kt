@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.IBinder
+import android.os.SystemClock
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import kotlinx.coroutines.*
@@ -71,12 +72,14 @@ class ForegroundService() : Service() {
     }
 
     private fun continueTimer(startTime: Long) {
-        var currentTime = startTime
+        var currentTime = SystemClock.elapsedRealtime() + startTime
+        var displayTime = currentTime - SystemClock.elapsedRealtime()
         job = GlobalScope.launch(Dispatchers.Main) {
-            while (true) {
-                var notification = currentTime.displayTime()
-                if (currentTime < 1000L) {
+            while (displayTime > 0L) {
+                var notification = displayTime.displayTime()
+                if (displayTime < 1000L) {
                     notification += " время вышло!"
+
                 }
                 notificationManager?.notify(
                     NOTIFICATION_ID,
@@ -84,8 +87,9 @@ class ForegroundService() : Service() {
                         notification
                     )
                 )
-                currentTime -= INTERVAL
+                displayTime = currentTime - SystemClock.elapsedRealtime()
                 delay(INTERVAL)
+                //Log.d("DEBUG", "DisplayTime = $displayTime")
             }
         }
     }

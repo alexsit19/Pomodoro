@@ -42,15 +42,21 @@ class MainActivity : AppCompatActivity(), TimerListener, LifecycleObserver {
         binding.addTimerBtn.setOnClickListener{
             val text = binding.timerValueEt.text.toString()
             val number = text.toIntOrNull()
+
             if(number == null) {
                 Toast.makeText(this,
                     "в поле ввода значение отсутствует или превышает допустимый уровень",
                      Toast.LENGTH_SHORT).show()
+            } else if (number == 0) {
+                Toast.makeText(this,
+                    "значение равно нулю, нечего засекать",
+                    Toast.LENGTH_SHORT).show()
             } else {
                 val hour = text.toInt() / 60
 
                 if (hour >= 24) {
-                    Toast.makeText(this,"значение часов получилось больше 23",
+                    Toast.makeText(this,
+                        "значение часов больше 23 часов, 59 минут",
                         Toast.LENGTH_SHORT).show()
                 } else {
                     val currentTime = text.toLong() * 1000 * 60
