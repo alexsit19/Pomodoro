@@ -72,7 +72,7 @@ class ForegroundService() : Service() {
     }
 
     private fun continueTimer(startTime: Long) {
-        var currentTime = SystemClock.elapsedRealtime() + startTime
+        var currentTime = SystemClock.elapsedRealtime() + startTime - 2000L
         var displayTime = currentTime - SystemClock.elapsedRealtime()
         job = GlobalScope.launch(Dispatchers.Main) {
             while (displayTime > 0L) {

@@ -99,6 +99,9 @@ class PomodoroViewHolder(
                 (binding.blinkingIndicator as? AnimationDrawable)?.stop()
                 if (timer.currentTime < 1000L) {
                     timer.isStarted = false
+                    timer.currentTime = timer.totalMs
+                    binding.progressImage.setCurrent(0)
+                    binding.timerTv.text = timer.totalMs.displayTime()
                     if (!timer.isStarted && !timer.isOver) {
                         timer.isOver = true
                         startAlarm()

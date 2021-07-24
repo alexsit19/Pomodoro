@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity(), TimerListener, LifecycleObserver {
                             ))
 
                     pomodoroAdapter.submitList(timers.toList())
+                    pomodoroAdapter.notifyDataSetChanged()
                     }
             }
             binding.timerValueEt.setText("")
