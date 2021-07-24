@@ -100,7 +100,7 @@ class PomodoroViewHolder(
                 if (timer.currentTime < 1000L) {
                     timer.isStarted = false
                     timer.currentTime = timer.totalMs
-                    binding.progressImage.setCurrent(0)
+                    binding.progressImage.setCurrent(0L)
                     binding.timerTv.text = timer.totalMs.displayTime()
                     if (!timer.isStarted && !timer.isOver) {
                         timer.isOver = true
